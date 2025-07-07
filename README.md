@@ -30,7 +30,7 @@ cd visionpulse-ai
 
 ```
 
-
+---
 # Install http-server globally if not installed
 npm install -g http-server
 
@@ -38,15 +38,16 @@ npm install -g http-server
 http-server .
 
 Visit: http://localhost:8080
+---
 
-
-
+---
 🛠️ Built With
 React 18
 Tailwind CSS
-
+---
+---
 ✍️ Author
 Mohamed Dhouib
 
 📧 mohameddhouib741@gmail.com
-
+---
