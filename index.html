@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VisionPulse AI</title>
+    <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function App() {
+        const [image, setImage] = React.useState(null);
+
+        const handleImageUpload = (event) => {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+              setImage(e.target.result);
+            };
+            reader.readAsDataURL(file);
+          }
+        };
+        const defaultImage = "road.jpeg"; // Replace with your actual image path
+
+        const useDefaultImage = () => {
+  const img = defaultImage;
+  setImage(img);
+  sessionStorage.setItem("uploadedImage", img);
+  window.location.href = "index2.html";
+};
+
+
+        const handleDetect = () => {
+          if (image) {
+            // Store image in sessionStorage for results page
+            sessionStorage.setItem("uploadedImage", image);
+            // Redirect to results page
+            window.location.href = "index2.html";
+          }
+        };
+
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col">
+            <header className="bg-white shadow-md py-6">
+              <div className="container mx-auto px-4 flex items-center justify-center">
+                <img
+                  src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1IDMwQzE1IDIwLjA1OTYgMjMuMDU5NiAxMiAyMy4wNTk2IDEyQzIzLjA1OTYgMTIgMzMuOTQwNCAxMiAzMy45NDA0IDEyQzMzLjk0MDQgMTIgNDIgMjAuMDU5NiA0MiAzMEM0MiAzOS45NDA0IDMzLjk0MDQgNDggMjMuMDU5NiA0OEMyMy4wNTk2IDQ4IDE1IDM5Ljk0MDQgMTUgMzBaIiBzdHJva2U9IiMyNjk5RkIiIHN0cm9rZS13aWR0aD0iNCIgLz4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iOCIgZmlsbD0iIzI2OTlGQiIgLz4KPHBhdGggZD0iTTMwIDMwQzMwIDQwLjA1OTYgMzguMDU5NiA0OCAzOC4wNTk2IDQ4QzM4LjA1OTYgNDggNDggMzguMDU5NiA0OCAzMEM0OCAyMS45NDA0IDM4LjA1OTYgMTIgMjkuOTQwNCAxMkMyOS45NDA0IDEyIDIwIDIxLjk0MDQgMjAgMzBaIiBzdHJva2U9IiMyNjk5RkIiIHN0cm9rZS13aWR0aD0iNCIgLz4KPC9zdmc+Cg=="
+                  alt="VisionPulse AI Logo"
+                  className="w-12 h-12 mr-3"
+                />
+                <h1 className="text-3xl font-extrabold text-gray-800">
+                  VisionPulse AI
+                </h1>
+              </div>
+            </header>
+            <main className="container mx-auto px-4 py-16 flex-grow flex items-center justify-center">
+              <div className="bg-white rounded-3xl shadow-2xl p-10 max-w-lg w-full">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+                  Discover Objects with AI Precision
+                </h2>
+                <p className="text-gray-600 mb-6 text-center">
+                  Upload an image and let VisionPulse AI identify objects with
+                  cutting-edge technology.
+                </p>
+               <div className="space-y-6">
+  <label className="block">
+    <span className="text-sm font-medium text-gray-700 mb-2 block">
+      Select Image
+    </span>
+    <input
+      type="file"
+      accept="image/*"
+      onChange={handleImageUpload}
+      className="block w-full text-sm text-gray-500
+        file:mr-4 file:py-3 file:px-6
+        file:rounded-lg file:border-0
+        file:text-sm file:font-semibold
+        file:bg-blue-600 file:text-white
+        hover:file:bg-blue-700
+        transition duration-200"
+    />
+  </label>
+
+  {/* Default image button */}
+  <button
+    onClick={useDefaultImage}
+    className="w-full py-3 px-6 rounded-lg font-semibold text-white bg-yellow-500 hover:bg-yellow-600 transition duration-200"
+  >
+    Use Default Image 
+  </button>
+
+
+
+                  <button
+                    onClick={handleDetect}
+                    disabled={!image}
+                    className={`w-full py-3 px-6 rounded-lg font-semibold text-white
+                                        ${
+                                          !image
+                                            ? "bg-gray-400 cursor-not-allowed"
+                                            : "bg-blue-600 hover:bg-blue-700"
+                                        }
+                                        transition duration-200`}
+                  >
+                   Start Detection &rarr;
+                  </button>
+                </div>
+                {/* Remove image preview below */}
+                {/* 
+                {image && (
+                  <div className="mt-6">
+                    <img
+                      src={image}
+                      alt="Uploaded Preview"
+                      className="w-full h-auto rounded-lg shadow-md"
+                    />
+                  </div>
+                )} 
+                */}
+              </div>
+            </main>
+            <footer className="bg-white text-black py-6">
+              <div className="container mx-auto px-4 text-center">
+                <p className="text-black-300">
+                  © 2025 VisionPulse AI. All rights reserved.<br />
+                  Developed with ❤️ by {"Mohamed Dhouib "}
+                  <img src="signature.png" alt="Elegant blue handwritten signature reading Mohamed Dhouib on a transparent background, conveying a personal and creative tone" className="mx-auto mt-2" />
+                </p>
+              </div>
+            </footer>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>

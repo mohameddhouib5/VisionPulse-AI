@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VisionPulse AI</title>
+</head>
+
+<body>
+    <main class="container">
+        <p id="status"></p>
+        <button id="detect-objects" disabled>Detect Objects</button>
+        <div id="image-container">
+            <img id="image" src="" alt="Uploaded Image" />
+        </div>
+    </main>
+    <script type="module">
+        // Set image src from sessionStorage
+        const imageElement = document.getElementById("image");
+        const storedImage = sessionStorage.getItem("uploadedImage");
+        if (storedImage) {
+            imageElement.src = storedImage;
+        }
+    </script>
+    <script src="./index.js" type="module"></script>
+</body>
+
+</html>
