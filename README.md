@@ -28,7 +28,7 @@ VisionPulse AI is a sleek and intuitive web application that allows users to upl
 git clone https://github.com/your-username/visionpulse-ai.git
 cd visionpulse-ai
 
-
+```
 
 
 # Install http-server globally if not installed
