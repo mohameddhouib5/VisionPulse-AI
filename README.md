@@ -18,23 +18,6 @@ VisionPulse AI is a sleek and intuitive web application that allows users to upl
 - 💡 Built with React 18, Babel, and TailwindCSS
 
 
-
-
-
-
----
-
-## 📁 Project Structure
-├── index.html # Main entry point
-├── index2.html # Results page (object detection output)
-├── style.css # Optional: global styles if not all in Tailwind
-├── default.jpg # Default image used for testing
-├── signature.png # Developer signature in footer
-├── assets/ # (Optional) Store images/icons
-└── README.md
----
-
-
 ---
 
 ## 🚀 Getting Started
